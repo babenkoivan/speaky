@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use Speaky\Application\Command\CheckIfCountriesSpeakTheSameLanguageCommand;
+use Speaky\Application\Command\ListCountriesWhichSpeakTheSameLanguageCommand;
+use Speaky\Application\Console;
+use Speaky\Infrastructure\Gateway\CountryGateway;
+
+include_once __DIR__ . '/../vendor/autoload.php';
+
+$countryGateway = new CountryGateway(getenv('COUNTRIES_SERVICE_URL'));
+
+$console = new Console();
+$console->register(new CheckIfCountriesSpeakTheSameLanguageCommand($countryGateway));
+$console->register(new ListCountriesWhichSpeakTheSameLanguageCommand($countryGateway));
+$console->run($argv);
