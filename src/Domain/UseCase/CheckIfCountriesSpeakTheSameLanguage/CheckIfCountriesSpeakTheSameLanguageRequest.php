@@ -22,19 +22,10 @@ final class CheckIfCountriesSpeakTheSameLanguageRequest
      */
     public function __construct(string $firstCountry, string $secondCountry)
     {
-        $invalidCountryNames = [];
-
         foreach (func_get_args() as $countryName) {
-            if (!preg_match('/^[a-z\s\(\)]+$/i', $countryName)) {
-                $invalidCountryNames[] = $countryName;
+            if (empty($countryName)) {
+                throw new InvalidArgumentException('Invalid country name');
             }
-        }
-
-        if (count($invalidCountryNames) > 0) {
-            throw new InvalidArgumentException(sprintf(
-                'Invalid country names: %s',
-                implode(', ', $invalidCountryNames)
-            ));
         }
 
         $this->firstCountry = $firstCountry;

@@ -17,9 +17,9 @@ final class ListCountriesWhichSpeakTheSameLanguageRequestTest extends TestCase
         $this->assertSame('Germany', $request->getCountry());
     }
 
-    public function test_an_exception_is_thrown_when_trying_to_create_request_with_invalid_country_name(): void
+    public function test_an_exception_is_thrown_when_trying_to_create_request_with_empty_country_name(): void
     {
-        $this->expectExceptionMessage('Invalid country name: foo123');
-        new ListCountriesWhichSpeakTheSameLanguageRequest('foo123');
+        $this->expectExceptionMessage('Invalid country name');
+        new ListCountriesWhichSpeakTheSameLanguageRequest('');
     }
 }
