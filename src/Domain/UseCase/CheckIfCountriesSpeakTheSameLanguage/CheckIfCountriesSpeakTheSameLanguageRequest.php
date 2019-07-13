@@ -25,7 +25,7 @@ final class CheckIfCountriesSpeakTheSameLanguageRequest
         $invalidCountryNames = [];
 
         foreach (func_get_args() as $countryName) {
-            if (!preg_match('/^[a-z]+$/i', $countryName)) {
+            if (!preg_match('/^[a-z\s\(\)]+$/i', $countryName)) {
                 $invalidCountryNames[] = $countryName;
             }
         }

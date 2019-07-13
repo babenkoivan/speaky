@@ -17,7 +17,7 @@ final class ListCountriesWhichSpeakTheSameLanguageRequest
      */
     public function __construct(string $country)
     {
-        if (!preg_match('/^[a-z]+$/i', $country)) {
+        if (!preg_match('/^[a-z\s\(\)]+$/i', $country)) {
             throw new InvalidArgumentException(sprintf(
                 'Invalid country name: %s',
                 $country
